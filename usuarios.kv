@@ -1,0 +1,115 @@
+<CLabel@Label>:
+    font_size:20
+<Login>:
+    id: login
+    tf_usuario: usuario
+    tf_password: password
+    orientation: "vertical"
+    Label:
+        markup: True
+        font_size: 32
+        text: '[u][color=34deeb]Bienvenidos a la ventana de Login de Usuarios[/color][/u]'
+    Label:
+        font_size:18
+
+        text: "Por favor ingrese sus credenciales"
+    AnchorLayout:
+        anchor_x:'center'
+        GridLayout:
+            size_hint:(.50,.50)
+            cols: 2
+            rows: 2
+            CLabel:
+                text: "Usuario"
+            TextInput:
+                id: usuario
+                multiline: False
+            CLabel:
+                text: "Password"
+            TextInput:
+                id: password
+                multiline:False
+    AnchorLayout:
+        anchor_x: "center"
+        Button:
+            size_hint: (.5,.5)
+            color: (0,0,0,1)
+            background_color: (0,255,255,1)
+            text: "Ingresar"
+            on_press: login.verificarLogin(usuario.text, password.text)
+
+<Registro>:
+    id: registro
+    tf_nombre: nombre
+    tf_correo: correo
+    tf_usuario: usuario
+    tf_password: password
+    spiner_sexo: sexo
+    spiner_rol: rol
+    orientation: "vertical"
+    Label:
+        markup: True
+        font_size: 32
+        text: '[u][color=34deeb]Bienvenidos a la ventana de Registro de Usuarios[/color][/u]'
+    Label:
+        font_size:24
+
+        text: "Por favor ingrese sus datos"
+    AnchorLayout:
+        anchor_x:'center'
+        GridLayout:
+            cols: 2
+            rows: 4
+            CLabel:
+                text: "Nombre"
+            TextInput:
+                id: nombre
+                multiline: False
+            CLabel:
+                text: "Correo"
+            TextInput:
+                id: correo
+                multiline: False
+            CLabel:
+                text: "Usuario"
+            TextInput:
+                id: usuario
+                multiline: False
+            CLabel:
+                text: "Password"
+            TextInput:
+                id: password
+                multiline:False
+    BoxLayout:
+        spacing: 10
+        size_hint: .7,.7
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        Spinner:
+            id: sexo
+            text: "Genero"
+            values: 'Hombre','Mujer'
+        Spinner:
+            id: rol
+            text: "Rol"
+            values: "Estudiante", "Profesor", "Administrativo", "Trabajador"
+    AnchorLayout:
+        anchor_x: "center"
+        Button:
+            size_hint: (.5,.5)
+            color: (0,0,0,1)
+            background_color: (0,255,255,1)
+            text: "Registrarse"
+            on_press: registro.registrar(nombre.text, correo.text, usuario.text, password.text, sexo.text, rol.text)
+
+<UsuariosApp>:
+    size_hint: .9, .9
+    pos_hint: {'center_x': .5, 'center_y': .5}
+    do_default_tab: False
+
+    TabbedPanelItem:
+        text: 'Autenticar'
+        Login:
+
+    TabbedPanelItem:
+        text: 'Registro'
+        Registro:
